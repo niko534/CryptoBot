@@ -1,0 +1,33 @@
+@server = http://localhost:5000
+@someShitcoin = 0x90422d35496e8ed3391971dbec894e4a8057081f
+@floki = 0x2b3f34e9d4b127797ce6244ea341a83733ddd6e4
+
+### DEV -> Test Tip Data
+POST {{server}}/dev
+content-type: application/json
+
+{
+    "isFirstPump": true,
+    "address": "{{someShitcoin}}",
+    "buySlippage": 0,
+    "sellSlippage": 0
+}
+
+### DEV -> Test resume
+POST {{server}}/dev/resume
+
+
+### DEV -> Drop old trades
+POST {{server}}/dev/dropOldTrades
+
+
+### PROD -> Run robot
+POST {{server}}/robot
+content-type: application/json
+
+{
+    "isFirstPump": true,
+    "address": "{{floki}}",
+    "buySlippage": 4,
+    "sellSlippage": 4
+}
